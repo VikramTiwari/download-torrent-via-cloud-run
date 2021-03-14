@@ -39,13 +39,15 @@ fs.mkdirSync(dir);
 const app = express();
 app.use(bodyParser.json({ type: "application/json" }));
 
-app.post("/", async (req, res) => {
-  const magnet = req.body.magnet;
-  if (magnet) {
+app.get("/", async (req, res) => {
+  if (!req.query.magnet) {
+    res.send({ error: `req.query.magnet not present` });
+  } else {
     try {
+      const magnet = decodeURIComponent(req.query.magnet);
       console.log(`Adding ${magnet}`);
       await new Promise((resolve) => {
-        const command = `webtorrent --out ${dir} download ${req.body.magnet}`;
+        const command = `webtorrent --out ${dir} download ${magnet}`;
         console.log(`Command: ${command}`);
         exec(command, async (error, stdout, stderr) => {
           if (error) {
@@ -61,8 +63,6 @@ app.post("/", async (req, res) => {
       console.log(error);
       res.send({ error: `Error while downloading ${magnet}: ${error}` });
     }
-  } else {
-    res.send({ error: `req.body.magnet not present` });
   }
 });
 
