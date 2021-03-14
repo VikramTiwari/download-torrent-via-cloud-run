@@ -26,7 +26,7 @@ curl --location --request GET 'https://YOUR_APP_URL?magnet=magnet=magnet%3A%3Fxt
 ### Benefits
 
 - The traffic detected by your ISP/firewalls is normal network traffic and not torrent traffic
-- Once deployed, you can use it from a simple web browser, no need for any torrent clients
+- Once deployed, you can use it from a simple command line, no need for any torrent clients
 - When used on cloud run or similar serverless environments, the instances are deleted after use, so no long running VMs and their upkeep/pricing.
 
 ### Limitations
