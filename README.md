@@ -31,7 +31,7 @@ curl --location --request GET 'https://YOUR_APP_URL?magnet=magnet%3A%3Fxt%3...' 
 
 ### Limitations
 
-- You can't use this for seeing torrents
+- You can't use this for seeding torrents
 - You shouldn't use this to download illegal or pirated content
 - You shouldn't use this for long running or heavy download jobs
 
