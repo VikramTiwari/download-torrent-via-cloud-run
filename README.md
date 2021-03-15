@@ -14,7 +14,7 @@ encodeURIComponent("magnet:?xt...");
 - Send a cURL request with encoded `magnet` in query parameter
 
 ```sh
-curl --location --request GET 'https://YOUR_APP_URL?magnet=magnet=magnet%3A%3Fxt%3...' --output ./result.zip
+curl --location --request GET 'https://YOUR_APP_URL?magnet=magnet%3A%3Fxt%3...' --output ./result.zip
 ```
 
 - The server will use `decodeURIComponent` to get the proper magnet
