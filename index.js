@@ -24,22 +24,25 @@ function zipDirectory(source, out) {
   });
 }
 
-// delete existing folder and files
-if (fs.existsSync(dir)) {
-  fs.rmSync(dir, { recursive: true });
-}
-if (fs.existsSync(zip)) {
-  fs.rmSync(zip);
-}
+function reset() {
+  // delete existing folder and files
+  if (fs.existsSync(dir)) {
+    fs.rmSync(dir, { recursive: true });
+  }
+  if (fs.existsSync(zip)) {
+    fs.rmSync(zip);
+  }
 
-// create new dir
-fs.mkdirSync(dir);
+  // create new dir
+  fs.mkdirSync(dir);
+}
 
 // add request handling via express
 const app = express();
 app.use(bodyParser.json({ type: "application/json" }));
 
 app.get("/", async (req, res) => {
+  reset(); // reset everything before retrying, because cloud run cloud be reusing the instance
   if (!req.query.magnet) {
     res.send({ error: `req.query.magnet not present` });
   } else {
